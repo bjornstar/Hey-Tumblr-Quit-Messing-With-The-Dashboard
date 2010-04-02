@@ -1,0 +1,91 @@
+<html>
+<head>
+	<title>Options for Hey Tumblr, Quit Messing With The Dashboard</title>
+	<script type="text/javascript">
+var defaultGarbage = ['Radar','Recommended','Iconic']; //Initialize bad things with default values.
+
+function loadOptions() {
+  var garbage = localStorage["garbage"];
+  
+  if (garbage == undefined) {
+    garbage = defaultGarbage;
+  } else {
+		garbage = JSON.parse(garbage);
+	}
+
+  var garbageTruck = document.getElementById("garbageTruck");
+  for (var i = 0; i < garbage.length; i++) {
+		if (garbage[i] != "") {
+			garbageInput = document.createElement('input');
+			garbageInput.value = garbage[i];
+			garbageInput.name = 'optionGarbage';
+			garbageInput.id = 'optionGarbage'+i;
+			garbageTruck.appendChild(garbageInput);
+			garbageRemove = document.createElement('a');
+			garbageRemove.href = '#';
+			garbageRemove.setAttribute('onclick', 'removeInput(\'optionGarbage'+i+'\'); return false;');
+			garbageRemove.innerText = 'remove';
+			garbageTruck.appendChild(garbageRemove);
+			garbageLinebreak = document.createElement('br');
+			garbageTruck.appendChild(garbageLinebreak);
+		}
+	}
+	addInput();
+}
+
+function removeInput(garbageWhich) {
+	var garbageInput = document.getElementById(garbageWhich);
+	garbageInput.parentNode.removeChild(garbageInput.nextSibling);
+	garbageInput.parentNode.removeChild(garbageInput.nextSibling);
+	garbageInput.parentNode.removeChild(garbageInput);
+}
+
+function addInput() {
+	var garbageTruck = document.getElementById('garbageTruck');
+	garbageInput = document.createElement('input');
+	garbageInput.value = "";
+	garbageInput.name = 'optionGarbage';
+	garbageInput.id = 'optionGarbage'+document.getElementsByTagName('input').length;
+	garbageAdd = document.createElement('a');
+	garbageAdd.href = "#";
+	garbageAdd.setAttribute('onclick', 'removeInput(\'optionGarbage'+document.getElementsByTagName('input').length+'\'); return false;');
+	garbageAdd.innerText = "remove";
+	garbageLinebreak = document.createElement('br');
+	garbageTruck.appendChild(garbageInput);
+	garbageTruck.appendChild(garbageAdd);
+	garbageTruck.appendChild(garbageLinebreak);
+}
+	
+function saveOptions() {
+	var garbages = document.getElementsByTagName('input');
+	var newGarbage = [];
+	for (var i = 0; i< garbages.length; i++) {
+		if (garbages[i].value != "") {
+			newGarbage.push(garbages[i].value);
+		}
+	}
+	localStorage["garbage"] = JSON.stringify(newGarbage);
+  location.reload();
+}
+
+function eraseOptions() {
+	localStorage.removeItem("garbage");
+	location.reload();
+}
+	</script>
+</head>
+<body onload="loadOptions()">
+	<div style="width:100%;height:128px;">
+	<img src="picard-wtf-is-this-shit-128.png" style="float:left;" />
+	<h1 style="line-height:100px;">Hey Tumblr, Quit Messing With The Dashboard</h1>
+	</div>
+	<br />
+	<label for="optionGarbage">Hide These Sections: </label>
+	<div id="garbageTruck"> </div><br />
+	<a href="#" onclick="addInput(); return false;">add</a>
+	<br />
+	<button onclick="saveOptions()">Save</button>
+	<br />
+	<button onclick="eraseOptions()">Restore default</button>
+</body>
+</html>

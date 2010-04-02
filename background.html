@@ -1,0 +1,11 @@
+<html>
+<script type="text/javascript">
+chrome.extension.onRequest.addListener(
+  function(request, sender, sendResponse) {
+    if (request.localStorage == "garbage")
+      sendResponse({garbage: localStorage["garbage"]});
+    else
+      sendResponse({}); // snub them.
+  });
+</script>
+</html>

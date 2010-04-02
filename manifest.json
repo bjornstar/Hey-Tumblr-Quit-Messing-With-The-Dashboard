@@ -1,0 +1,22 @@
+{
+  "name": "Hey Tumblr, Quit Messing With The Dashboard",
+  "version": "0.1",
+  "description": "Hey Tumblr, I don't give two fluffy bunnies about the Radar, Iconic Promotional Units, Tumblr Tuesday, or any of that other garbage. Stop messing with my dashboard.",
+  "browser_action": {
+    "default_icon": "picard-wtf-is-this-shit-16.png",
+    "default_title": "Hey Tumblr, Quit Messing With The Dashboard"
+  },
+  "icons": { 
+    "16": "picard-wtf-is-this-shit-16.png",
+    "32": "picard-wtf-is-this-shit-32.png",
+    "48": "picard-wtf-is-this-shit-48.png",
+    "64": "picard-wtf-is-this-shit-64.png"
+  },
+  "background_page"	: "background.html",
+  "options_page"	: "options.html",
+  "content_scripts": [ {
+    "js": [ "script.js" ],
+    "matches": [ "http://*/*", "https://*/*" ],
+    "include_globs": [ "http://*.tumblr.com/*" ]
+  } ]
+}
