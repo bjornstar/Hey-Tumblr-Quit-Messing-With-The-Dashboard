@@ -2,10 +2,6 @@
   "name": "Hey Tumblr, Quit Messing With The Dashboard",
   "version": "0.1",
   "description": "Hey Tumblr, I don't give two fluffy bunnies about the Radar, Iconic Promotional Units, Tumblr Tuesday, or any of that other garbage.",
-  "browser_action": {
-    "default_icon": "picard-wtf-is-this-shit-16.png",
-    "default_title": "Hey Tumblr, Quit Messing With The Dashboard"
-  },
   "icons": { 
     "16": "picard-wtf-is-this-shit-16.png",
     "32": "picard-wtf-is-this-shit-32.png",

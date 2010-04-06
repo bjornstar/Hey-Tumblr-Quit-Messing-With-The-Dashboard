@@ -1,4 +1,4 @@
-var defaultGarbage = ['Radar','Recommended','Iconic']; //Initialize with default values.
+var defaultGarbage = ['radar','recommended','promo']; //Initialize with default values.
 var garbage;
 
 chrome.extension.sendRequest({localStorage: "garbage"}, function(response) {
@@ -12,13 +12,13 @@ chrome.extension.sendRequest({localStorage: "garbage"}, function(response) {
 });
 
 var last_nav_title=0;
-var dashboard_nav_titles = document.getElementsByClassName('dashboard_nav_title');
+var dashboard_nav_titles = document.getElementsByClassName('dashboard_nav_item');
 
 function purge() {
 	for (var i=0;i<dashboard_nav_titles.length;i++) {
 		for (trash in garbage) {
-			if (dashboard_nav_titles[i].innerHTML.indexOf(garbage[trash]) >= 0) {
-				evilness = dashboard_nav_titles[i].parentNode
+			if (dashboard_nav_titles[i].innerHTML.toLowerCase().indexOf(garbage[trash].toLowerCase()) >= 0) {
+				evilness = dashboard_nav_titles[i];
 				evilness.parentNode.removeChild(evilness);
 			}
 		}
