@@ -1,8 +1,78 @@
 <html>
-<head>
-	<title>Options for Hey Tumblr, Quit Messing With The Dashboard</title>
-	<script type="text/javascript">
-var defaultGarbage = ['radar','recommend','promo']; //Initialize bad things with default values.
+  <head>
+    <title>Options for Hey Tumblr, Quit Messing With The Dashboard</title>
+    <style type="text/css">
+      html{
+        color:black;
+        font-family:arial,helvetica,sans-serif;
+        margin:0;
+        padding:10px 10px;
+        background-color:#2C4762;
+        background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAARHCAIAAAC9OZ68AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAc9JREFUeNrsVlF2wzAIQzvXLrKD7PyqYwMWdry+fi8fvDYuAQESrn3//H6Z2RtjM5QztjPEGZshPil+SD/aOB/vSDx6LPg5Iz7amclz4BBcyzthSP+DBV6NSfhZYGOPAa3N41642P3Zc/Vz7nnyN4sYvMEn/VhyjV5i5Lzw0GMWH+8x95r3PrDmKz3d59Kfrx5fuDH7ljgcS/QpejPqDNzuj4ml+3ptOM3WIi+yb1nv1sfJRWbfWWrvHPSeDSysfCjzEDzBkzssztOVT6O+4BRvcsze7dpB8c2eBc993rb0dNehzNAGtyeulQdMrdZaFi7pb5LjVm9XLRR9ouJkwTN5zVUDkRuhcxRenrWOyqklJ0LP/XvjSosHzhmmb/Js1Ysd+COaMJlrzE60XeOrZid2tB4SPO8x0a/qj7Jre7yeD6IXK3pRvMRhX/LmPsg5L99jf0Zturus8hvCD3q/Bt+w+P+hJVs1E7uFdYfnvnIO5V0me0x33hWHdZfEe1VHdtytlQvrfSH3KKrmw3/0gkVvYw/s/Kqc0Lkh61TMdV9i7vV4zr0XvdN+Dm5CPiNfnvvdzpu7r2gX9vk9/thjjz322GOfGN7/h3js39tLgAEA5+M4ca0bVE0AAAAASUVORK5CYII=);
+        background-repeat:repeat-x;
+        color:#4F545A;
+      }
+      h1{
+        color:black;
+      }
+      h2{
+        margin:0;
+      }
+      p{
+        margin:0;
+      }
+      a{
+        color:#4F545A;
+        text-decoration:none;
+      }
+      #content{
+        background: white repeat-y;
+        display: block;
+        margin: 0px;
+        outline-color: #444;
+        outline-style: none;
+        outline-width: 0px;
+        padding-bottom: 5px;
+        padding-left: 30px;
+        padding-right: 30px;
+        padding-top: 5px;
+        width: 540px;
+        -webkit-border-radius: 10px;
+        -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, .46);
+      }
+      #content_top,#content_bottom{
+        display: inline;
+        height: 25px;
+        outline-color: #444;
+        outline-style: none;
+        outline-width: 0px;
+        width: 600px;
+      }
+      #listBlack,#listWhite{
+        float:left;
+        width:400px;
+        margin-bottom:25px;
+      }
+      #listBlack p,#listWhite p{
+        width:300px;
+      }
+      #spacer{
+        width:840px;
+        clear:left;
+      }
+      #version_div{
+        color:#A8B1BA;
+        font: 11px 'Lucida Grande',Verdana,sans-serif;
+        text-align:right;
+      }
+      #browser_span{
+        color:#A8B1BA;
+        font: 11px 'Lucida Grande',Verdana,sans-serif;
+        vertical-align:top;
+      }
+    </style>
+    <script type="text/javascript">
+var defaultGarbage = ['radar']; //Initialize bad things with default values.
 
 function loadOptions() {
   var garbage = localStorage["garbage"];
@@ -16,21 +86,10 @@ function loadOptions() {
   var garbageTruck = document.getElementById("garbageTruck");
   for (var i = 0; i < garbage.length; i++) {
 		if (garbage[i] != "") {
-			garbageInput = document.createElement('input');
-			garbageInput.value = garbage[i];
-			garbageInput.name = 'optionGarbage';
-			garbageInput.id = 'optionGarbage'+i;
-			garbageTruck.appendChild(garbageInput);
-			garbageRemove = document.createElement('a');
-			garbageRemove.href = '#';
-			garbageRemove.setAttribute('onclick', 'removeInput(\'optionGarbage'+i+'\'); return false;');
-			garbageRemove.innerText = 'remove';
-			garbageTruck.appendChild(garbageRemove);
-			garbageLinebreak = document.createElement('br');
-			garbageTruck.appendChild(garbageLinebreak);
+      addInput(garbage[i]);
 		}
 	}
-	addInput();
+	addInput(null);
 }
 
 function removeInput(garbageWhich) {
@@ -40,19 +99,19 @@ function removeInput(garbageWhich) {
 	garbageInput.parentNode.removeChild(garbageInput);
 }
 
-function addInput() {
+function addInput(itemValue) {
 	var garbageTruck = document.getElementById('garbageTruck');
 	garbageInput = document.createElement('input');
-	garbageInput.value = "";
+	garbageInput.value = itemValue;
 	garbageInput.name = 'optionGarbage';
 	garbageInput.id = 'optionGarbage'+document.getElementsByTagName('input').length;
 	garbageAdd = document.createElement('a');
 	garbageAdd.href = "#";
 	garbageAdd.setAttribute('onclick', 'removeInput(\'optionGarbage'+document.getElementsByTagName('input').length+'\'); return false;');
-	garbageAdd.innerText = "remove";
+	garbageAdd.innerHTML = '<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAGFJREFUeNpiXLVmfTwDA8MEIHYICwm8COTrA9kHgLiAEch5D2QIAPEHkABUIZjPBNIBlQAJLEBS6MAEMgqqAxkUgMQZkewQQJKE6ESSAAkkIFlxgAlq5AeoaxciuaEAIMAAiDAi7M96B5wAAAAASUVORK5CYII=" />&nbsp;';
 	garbageLinebreak = document.createElement('br');
-	garbageTruck.appendChild(garbageInput);
 	garbageTruck.appendChild(garbageAdd);
+	garbageTruck.appendChild(garbageInput);
 	garbageTruck.appendChild(garbageLinebreak);
 }
 	
@@ -61,7 +120,10 @@ function saveOptions() {
 	var newGarbage = [];
 	for (var i = 0; i< garbages.length; i++) {
 		if (garbages[i].value != "") {
-			newGarbage.push(garbages[i].value);
+		  console.log(garbages[i]);
+      if (garbages[i].name.substring(0,13)=="optionGarbage") {
+        newGarbage.push(garbages[i].value);
+      }
 		}
 	}
 	localStorage["garbage"] = JSON.stringify(newGarbage);
@@ -72,20 +134,20 @@ function eraseOptions() {
 	localStorage.removeItem("garbage");
 	location.reload();
 }
-	</script>
-</head>
-<body onload="loadOptions()">
-	<div style="width:100%;height:128px;">
-	<img src="picard-wtf-is-this-shit-128.png" style="float:left;" />
-	<h1 style="line-height:100px;">Hey Tumblr, Quit Messing With The Dashboard</h1>
-	</div>
-	<br />
-	<label for="optionGarbage">Hide These Sections: </label>
-	<div id="garbageTruck"> </div><br />
-	<a href="#" onclick="addInput(); return false;">add</a>
-	<br />
-	<button onclick="saveOptions()">Save</button>
-	<br />
-	<button onclick="eraseOptions()">Restore default</button>
-</body>
+    </script>
+  </head>
+  <body onload="loadOptions()">
+    <div id="content">
+      <img src="Icon-128.png" style="float:left;" />
+      <h1 style="line-height:32px;height:128px;margin-top:28px;">Hey Tumblr, Quit Messing With The Dashboard</h1>
+
+      <label for="optionGarbage">Hide These Sections: </label>
+      <div id="garbageTruck"> </div>
+      <a href="#" onclick="addInput(); return false;">add</a>
+      <br /><br />
+      <input type="button" onclick="saveOptions()" value="Save" />&nbsp;&nbsp;
+      <input type="button" onclick="if (confirm('Are you sure you want to restore defaults?')) {eraseOptions();};" value="Restore default" />
+      <br /><br />
+    </div>
+  </body>
 </html>
